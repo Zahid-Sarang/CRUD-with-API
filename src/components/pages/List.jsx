@@ -40,6 +40,7 @@ const useStyles = makeStyles({
 const List = () => {
   const classes = useStyles();
   const [students, setStudents] = useState([]);
+  const [status,setStatus] = useState(false);
 
   useEffect(() => {
     const getAllStudent = async () => {
@@ -56,11 +57,14 @@ const List = () => {
   const deleteStudent = async (id) => {
     try{
       await axios.delete(`http://localhost:8000/students/${id}`)
+      setStatus(true)
     }catch{
       console.log("post not delete")
     }
   }
-
+  if(status){
+    return <List />
+  }
   return (
     <>
       <Box textAlign="center" p={2} className={classes.stuListColor}>

@@ -34,6 +34,14 @@ const Home = () => {
   });
   const [status,setStatus] = useState(false);
 
+  function onTextFieldChange(e){
+    setAddStudent({
+      ...addStudent,
+      [e.target.name]:e.target.value
+    })
+  }
+
+
   const postdata = async (e) => {
     e.preventDefault()
     try{
@@ -44,12 +52,6 @@ const Home = () => {
       console.log("Something is Wrong on Submit")
     }
     
-  }
-  function onTextFieldChange(e){
-    setAddStudent({
-      ...addStudent,
-      [e.target.name]:e.target.value
-    })
   }
 
   if(status){

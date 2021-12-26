@@ -2,23 +2,18 @@
   "students": [
     {
       "id": 1,
-      "stuname": "zahid",
-      "email": "zahid@gmail.com"
-    },
-    {
-      "id": 2,
       "stuname": "tayeb",
       "email": "tayeb@gmail.com"
     },
     {
-      "id": 3,
-      "stuname": "ahemd",
+      "id": 2,
+      "stuname": "shaikh",
       "email": "ahemd@gmail.com"
     },
     {
-      "stuname": "ABBAS",
-      "email": "zahidsarang95@gmail.com",
-      "id": 4
+      "stuname": "anas",
+      "email": "anas@gmail.com",
+      "id": 3
     }
   ]
 }
