@@ -1,28 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
-import {
-  Typography,
-  Box,
-  makeStyles,
-  Grid,
-  TableContainer,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Paper,
-  IconButton,
-  Tooltip,
-  TextField,
-  Button,
-} from "@material-ui/core";
+import { Typography, Box, makeStyles, Grid,TextField,Button,} from "@material-ui/core";
+import axios from "axios";
 
 import { deepPurple, green, orange } from "@material-ui/core/colors";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { Link } from "react-router-dom";
+
 import List from "./List";
 
 const useStyles = makeStyles({
@@ -47,6 +29,21 @@ const useStyles = makeStyles({
 
 const Home = () => {
   const classes = useStyles();
+  const [addStudent,setAddStudent] = useState({
+    Stuname:"",
+    email:""
+  });
+
+  function onTextFieldChange(e){
+    setAddStudent({
+      ...addStudent,
+      [e.target.name]:e.target.value
+    })
+  }
+
+  console.log(addStudent);
+
+
   return (
     <>
       <Box textAlign="center" className={classes.headingColor} p={2} mb={2}>
@@ -69,6 +66,7 @@ const Home = () => {
                   id="Stuname"
                   label="Name"
                   autoFocus
+                  onChange={(e) => onTextFieldChange(e)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -81,6 +79,7 @@ const Home = () => {
                   id="email"
                   label="Email Address"
                   autoFocus
+                  onChange={(e) => onTextFieldChange(e)}
                 />
               </Grid>
               <Box m={3}>
@@ -97,7 +96,7 @@ const Home = () => {
           </form>
         </Grid>
         <Grid item md={6} xs={12}>
-         <List/>
+          <List />
         </Grid>
       </Grid>
     </>
