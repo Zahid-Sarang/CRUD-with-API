@@ -26,14 +26,25 @@ const useStyles = makeStyles({
     fontSize: 16,
   },
 });
-
 const Home = () => {
   const classes = useStyles();
   const [addStudent,setAddStudent] = useState({
-    Stuname:"",
+    stuname:"",
     email:""
   });
+  const [status,setStatus] = useState(false);
 
+  const postdata = async (e) => {
+    e.preventDefault()
+    try{
+      await axios.post('http://localhost:8000/students',addStudent)
+      setStatus(true)
+
+    }catch (error) {
+      console.log("Something is Wrong on Submit")
+    }
+    
+  }
   function onTextFieldChange(e){
     setAddStudent({
       ...addStudent,
@@ -41,9 +52,9 @@ const Home = () => {
     })
   }
 
-  console.log(addStudent);
-
-
+  if(status){
+    return <Home />
+  }
   return (
     <>
       <Box textAlign="center" className={classes.headingColor} p={2} mb={2}>
@@ -58,12 +69,12 @@ const Home = () => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  autoComplete="Stuname"
-                  name="Stuname"
+                  autoComplete="stuname"
+                  name="stuname"
                   variant="outlined"
                   required
                   fullWidth
-                  id="Stuname"
+                  id="stuname"
                   label="Name"
                   autoFocus
                   onChange={(e) => onTextFieldChange(e)}
@@ -88,6 +99,7 @@ const Home = () => {
                   variant="contained"
                   color="primary"
                   fullWidth
+                  onClick={(e) => postdata(e)}
                 >
                   Add
                 </Button>

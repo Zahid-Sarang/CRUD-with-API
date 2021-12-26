@@ -53,6 +53,14 @@ const List = () => {
     getAllStudent();
   }, []);
 
+  const deleteStudent = async (id) => {
+    try{
+      await axios.delete(`http://localhost:8000/students/${id}`)
+    }catch{
+      console.log("post not delete")
+    }
+  }
+
   return (
     <>
       <Box textAlign="center" p={2} className={classes.stuListColor}>
@@ -99,7 +107,7 @@ const List = () => {
                   </Tooltip>
                   <Tooltip title="Delete">
                     <IconButton>
-                      <DeleteIcon color="secondary" />
+                      <DeleteIcon color="secondary" onClick={() => deleteStudent(item.id)}/>
                     </IconButton>
                   </Tooltip>
                 </TableCell>
